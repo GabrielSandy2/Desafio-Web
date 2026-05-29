@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío Web - Serie de Fibonacci</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <h1>Matemáticas en el Mundo Real</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="activo">Serie de Fibonacci</a></li>
+                <li><a href="primos.html">Números Primos</a></li>
+                <li><a href="combinado.html">Fibonacci y Primos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenedor-dividido">
+        
+        <section class="lado-izquierdo fibonacci-bg">
+            <div class="capa-oscura"></div> 
+            <div class="contenido-izquierdo">
+                <div>
+                    <span class="etiqueta-top" style="font-family: monospace; color: var(--rojo-brillante);">[ ALGORITMO: FIBONACCI_LOOP ]</span>
+                    <h2>Medición del Crecimiento</h2> 
+                </div>
+                <p class="descripcion-proyecto">
+                    Descubre cómo la serie de Fibonacci modela el comportamiento exponencial y la duplicación de poblaciones biológicas de bacterias en el mundo real.
+                </p>
+            </div>
+        </section>
+
+        <section class="lado-derecho">
+            
+            <div class="contenedor-pestanas">
+                <button class="btn-pestana activa" onclick="cambiarPestana('form', this)">Simulador</button>
+                <button class="btn-pestana" onclick="cambiarPestana('code', this)">Código JS</button>
+            </div>
+
+            <div id="pestana-form" class="contenido-pestana activo">
+                <div class="bloque-formulario">
+                    <h3>Simulador de Crecimiento</h3>
+                    <form id="formularioFibonacci">
+                        <label for="meses">Cantidad de meses a simular</label>
+                        <input type="number" id="meses" min="1" max="40" placeholder="Ingresa los meses aquí..." required>
+                        <button type="button" id="btnCalcularFibonacci">Simular Ahora</button>
+                    </form>
+                </div>
+
+                <div id="resultadoFibonacci" class="caja-resultado">
+                    El resultado aparecerá aquí...
+                </div>
+            </div>
+
+            <div id="pestana-code" class="contenido-pestana">
+                <h3>Lógica de Control JavaScript</h3>
+                <div class="bloque-codigo">
+<pre><code>// Algoritmo de Fibonacci usando ciclos controlados sin vectores
+document.getElementById('btnCalcularFibonacci').addEventListener('click', () => {
+    const meses = parseInt(document.getElementById('meses').value);
+    const resultadoDiv = document.getElementById('resultadoFibonacci');
+    
+    if (isNaN(meses) || meses < 1 || meses > 40) {
+        resultadoDiv.innerHTML = "Por favor, ingresa un número válido entre 1 y 40.";
+        return;
+    }
+
+    let a = 0, b = 1, c;
+    let HTML = "&lt;strong&gt;Población de Bacterias Calculada:&lt;/strong&gt;&lt;br&gt;&lt;br&gt;";
+    
+    for (let i = 1; i &lt;= meses; i++) {
+        HTML += `Mes ${i}: &lt;span style="color:var(--naranja-neon); font-weight:bold;"&gt;${b} bacterias&lt;/span&gt;&lt;br&gt;`;
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    
+    resultadoDiv.innerHTML = HTML;
+});</code></pre>
+                </div>
+            </div>
+
+            <div class="conclusiones-mini">
+                <p><strong>Nota del algoritmo:</strong> Se calcula mediante un ciclo controlado con variables simples sin usar vectores.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Estudiante:SGS Primer Semestre | <a href="#">Repositorio Git</a></p>
+    </footer>   
+    <script src="js/script.js"></script>
+</body>
+</html>

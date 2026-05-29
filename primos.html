@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío Web - Números Primos</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <h1>Matemáticas en el Mundo Real</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Serie de Fibonacci</a></li>
+                <li><a href="primos.html" class="activo">Números Primos</a></li>
+                <li><a href="combinado.html">Fibonacci y Primos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenedor-dividido">
+        
+        <section class="lado-izquierdo primos-bg">
+            <div class="capa-oscura"></div>
+            
+            <div class="contenido-izquierdo">
+                <div>
+                    <span class="etiqueta-top" style="font-family: monospace; color: var(--rojo-brillante);">[ ALGORITMO: PRIMALIDAD_ASCII ]</span>
+                    <h2>Asegura tus contraseñas</h2>
+                </div>
+                <p class="descripcion-proyecto">
+                    Los números primos son los bloques fundamentales de la ciberseguridad digital. Modifica y protege mensajes alterando sus caracteres mediante claves basadas en propiedades matemáticas únicas.
+                </p>
+            </div>
+        </section>
+
+        <section class="lado-derecho">
+            
+            <div class="contenedor-pestanas">
+                <button class="btn-pestana activa" onclick="cambiarPestana('form', this)">Módulo</button>
+                <button class="btn-pestana" onclick="cambiarPestana('code', this)">Código JS</button>
+            </div>
+
+            <div id="pestana-form" class="contenido-pestana activo">
+                <div class="bloque-formulario">
+                    <h3>Módulo de Encriptación</h3>
+                    <form id="formularioPrimos">
+                        <label for="textoProcesar">Texto o contraseña a procesar</label>
+                        <input type="text" id="textoProcesar" placeholder="Ingresa tu contraseña aquí..." required>
+                        
+                        <label for="clavePrimo">Clave de seguridad (Número Primo)</label>
+                        <input type="number" id="clavePrimo" min="2" placeholder="Ej. 7" required>
+                        
+                        <div class="botones-contenedor">
+                            <button type="button" id="btnEncriptar">🔒 Encriptar</button>
+                            <button type="button" id="btnDesencriptar">🔓 Desencriptar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="resultadoPrimos" class="caja-resultado">
+                    El mensaje procesado aparecerá aquí...
+                </div>
+            </div>
+
+            <div id="pestana-code" class="contenido-pestana">
+                <h3>Lógica de Control JavaScript</h3>
+                <div class="bloque-codigo">
+<pre><code>// Verificación de primalidad y desplazamiento de caracteres en tabla ASCII
+function esPrimo(n) {
+    if (n &lt; 2) return false;
+    for (let i = 2; i &lt;= Math.sqrt(n); i++) {
+        if (n % i === 0) return false;
+    }
+    return true;
+}
+
+// Cifrado sumando el valor de la clave al código ASCII
+document.getElementById('btnEncriptar').addEventListener('click', () => {
+    const texto = document.getElementById('textoProcesar').value;
+    const clave = parseInt(document.getElementById('clavePrimo').value);
+    const resultadoDiv = document.getElementById('resultadoPrimos');
+
+    if (!esPrimo(clave)) {
+        resultadoDiv.innerHTML = "Error: ¡La clave debe ser un número primo!";
+        return;
+    }
+
+    let cifrado = texto.split('').map(char => 
+        String.fromCharCode(char.charCodeAt(0) + clave)
+    ).join('');
+
+    resultadoDiv.innerHTML = `&lt;strong&gt;Texto Cifrado:&lt;/strong&gt; ${cifrado}`;
+});</code></pre>
+                </div>
+            </div>
+
+            <div class="conclusiones-mini">
+                <p><strong>Nota del algoritmo:</strong> Se verifica mediante divisiones consecutivas que la clave posea únicamente dos divisores exactos antes de alterar las cadenas.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Estudiante:SGS Primer Semestre | <a href="#">Repositorio Git</a></p>
+    </footer>   
+    <script src="js/script.js"></script>
+</body>
+</html>

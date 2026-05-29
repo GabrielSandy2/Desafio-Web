@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío Web - Fibonacci y Primos Combinados</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <h1>Matemáticas en el Mundo Real</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Serie de Fibonacci</a></li>
+                <li><a href="primos.html">Números Primos</a></li>
+                <li><a href="combinado.html" class="activo">Fibonacci y Primos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenedor-dividido">
+        
+        <section class="lado-izquierdo combinado-bg">
+            <div class="capa-oscura"></div>
+            <div class="contenido-izquierdo">
+                <div>
+                    <span class="etiqueta-top" style="font-family: monospace; color: var(--rojo-brillante);">[ ALGORITMO: FUSION_MERCADO_FIBO ]</span>
+                    <h2>Simulación del Mercado</h2>
+                </div>
+                <p class="descripcion-proyecto">
+                    Analiza las tendencias de volatilidad matemática aplicando el crecimiento de la serie y detectando zonas críticas de resistencia en la red.
+                </p>
+            </div>
+        </section>
+    
+        <section class="lado-derecho">
+            
+            <div class="contenedor-pestanas">
+                <button class="btn-pestana activa" onclick="cambiarPestana('form', this)">Panel</button>
+                <button class="btn-pestana" onclick="cambiarPestana('code', this)">Código JS</button>
+            </div>
+
+            <div id="pestana-form" class="contenido-pestana activo">
+                <div class="bloque-formulario">
+                    <h3>Panel de Inversión</h3>
+                    <form id="formularioCombinado">
+                        <label for="criptomoneda">Selecciona la Criptomoneda</label>
+                        <select id="criptomoneda">
+                            <option value="BTC">Bitcoin (BTC)</option>
+                            <option value="ETH">Ethereum (ETH)</option>
+                            <option value="SOL">Solana (SOL)</option>
+                        </select>
+                    
+                        <label for="diasProyeccion">Días de proyección a evaluar</label>
+                        <input type="number" id="diasProyeccion" min="1" max="45" placeholder="Ingresa la cantidad de días..." required>
+                        
+                        <button type="button" id="btnProyectarMercado">Analizar Tendencias</button>
+                    </form>
+                </div>
+            
+                <div id="resultadoCombinado" class="caja-resultado">
+                    El historial de mercado aparecerá aquí...
+                </div>
+            </div>
+        
+            <div id="pestana-code" class="contenido-pestana">
+                <h3>Lógica de Control JavaScript</h3>
+                <div class="bloque-codigo">
+<pre><code>// Fusión de ciclos controlados para evaluar volatilidad y zonas de soporte
+function esZonaCritica(dia) {
+    if (dia &lt; 2) return false;
+    for (let i = 2; i &lt;= Math.sqrt(dia); i++) {
+        if (dia % i === 0) return false;
+    }
+    return true; // Si el día es primo, se detecta volatilidad crítica
+}
+
+document.getElementById('btnProyectarMercado').addEventListener('click', () => {
+    const crypto = document.getElementById('criptomoneda').value;
+    const dias = parseInt(document.getElementById('diasProyeccion').value);
+    const resultadoDiv = document.getElementById('resultadoCombinado');
+
+    let a = 0, b = 1, c;
+    let HTML = `&lt;strong&gt;Historial de Mercado para ${crypto}:&lt;/strong&gt;&lt;br&gt;&lt;br&gt;`;
+
+    for (let i = 1; i &lt;= dias; i++) {
+        let alerta = esZonaCritica(i) ? " [⚡ Resistencia Crítica]" : "";
+        HTML += `Día ${i}: Valor Fibo: ${b} ${alerta}&lt;br&gt;`;
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    resultadoDiv.innerHTML = HTML;
+});</code></pre>
+                </div>
+            </div>
+
+            <div class="conclusiones-mini">
+                <p><strong>Nota del algoritmo:</strong> Fusiona ciclos controlados: genera la serie matemática sin guardar vectores y detecta zonas de resistencia.</p>
+            </div>
+        
+        </section>
+    
+    </main>
+
+    <footer>
+        <p>Estudiante:SGS Primer Semestre | <a href="#">Repositorio Git</a></p>
+    </footer>
+<script src="js/script.js"></script>
+</body>
+</html>
